@@ -132,12 +132,20 @@
                     <h2>3.a.</h2>
                 </div>
                 <div class="answer">
-                    <p>Analyse : L’entreprise peut analyser les produits fournis en Allemagne et faire des comparaisons de prix pour les mêmes produits fourni en autre pays. *</p>
-                    <pre><code>SELECT Categorie.NomCateg, Produit.NomProd, Fournisseur.Pays, Produit.PrixUnit
-                        FROM Categorie INNER JOIN (Fournisseur INNER JOIN Produit ON Fournisseur.NoFour = Produit.NoFour) ON Categorie.CodeCateg = Produit.CodeCateg
-                        WHERE (((Fournisseur.Pays) Like "*Allemagne*") AND ((Categorie.CodeCateg)=1 Or (Categorie.CodeCateg)=3) AND ((Produit.PrixUnit) < 100)) ;
-                    </code></pre>
+                    <p>Analyse : L’entreprise peut analyser les produits fournis en Allemagne et faire des comparaisons de prix pour les mêmes produits fournis dans d'autres pays.</p>
+                    <pre><code>SELECT Categorie.NomCateg, 
+                        Produit.NomProd, 
+                        Fournisseur.Pays, 
+                        Produit.PrixUnit
+                FROM Categorie 
+                INNER JOIN (Fournisseur 
+                INNER JOIN Produit ON Fournisseur.NoFour = Produit.NoFour) 
+                ON Categorie.CodeCateg = Produit.CodeCateg
+                WHERE Fournisseur.Pays Like "*Allemagne*" 
+                    AND (Categorie.CodeCateg = 1 OR Categorie.CodeCateg = 3) 
+                    AND Produit.PrixUnit &lt; 100;</code></pre>
                 </div>
+                
             </div>
             <!-- 3.b. -->
             <div class="qa">
@@ -187,10 +195,11 @@ HAVING (((Client.VilleCli)="Nantes"));</code></pre>
                 </div>
                 <div class="answer">
                     <pre><code>SELECT Client.ContactCli, Client.VilleCli, Client_1.ContactCli, Client_1.VilleCli
-FROM Client INNER JOIN Client AS Client_1 ON Client.CodeCli < Client_1.CodeCli
-WHERE (((Client.VilleCli) Like "*Besançon*") AND ((Client_1.VilleCli) Like "*Besançon*"));</code></pre>
+                FROM Client INNER JOIN Client AS Client_1 ON Client.CodeCli &lt; Client_1.CodeCli
+                WHERE (((Client.VilleCli) Like "*Besançon*") AND ((Client_1.VilleCli) Like "*Besançon*"));</code></pre>
                     <img src="images/image8.png">
                 </div>
+                
             </div>
             <!-- 4.c. -->
             <div class="qa">
@@ -199,12 +208,12 @@ WHERE (((Client.VilleCli) Like "*Besançon*") AND ((Client_1.VilleCli) Like "*Be
                 </div>
                 <div class="answer">
                     <pre><code>SELECT Commande.CodeCli 
-FROM Commande 
-INNER JOIN DetailCommande ON Commande.NoCom = DetailCommande.NoCom 
-WHERE (((DetailCommande.Remise) < 0.25)) 
-GROUP BY Commande.CodeCli;</code></pre>
+                FROM Commande 
+                INNER JOIN DetailCommande ON Commande.NoCom = DetailCommande.NoCom 
+                WHERE DetailCommande.Remise &lt; 0.25 
+                GROUP BY Commande.CodeCli;</code></pre>
                     <img src="images/image9.png">
-                </div>
+                </div>                
             </div>
             <!-- 4.d. -->
             <div class="qa">
