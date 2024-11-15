@@ -519,6 +519,22 @@
     margin: 0;
 }
 
+.question h1 {
+    font-size: 22px;
+    color: #000000;
+    border-radius: 5px;
+    margin: 0;
+    margin-bottom: 30px;
+    font-weight: 600;
+    padding-bottom: 30px;
+    width: 100%;
+    text-align: center;
+    font-family: "Poppins";
+    border-radius: 0;
+    margin-top: 30px;
+    border-bottom: var(--color-bg-gray2) 3px solid;
+}
+
 .question {
     width: 100%;
 }
@@ -534,8 +550,13 @@
     width: calc(100% - 20px);
     max-width: calc(1100px - 68px - 68px);
     border-radius: 25px;
-    padding: 10px 16px;
+    padding: 12px;
     background-color: #f9f9f9;
+}
+
+.answer p {
+    padding: 0px 4px;
+
 }
 
 pre {
